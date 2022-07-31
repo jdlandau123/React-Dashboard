@@ -14,7 +14,7 @@ export function Gmail() {
         const url = new URL(window.location.href);
         const urlToken = url.hash.split('&')[0];
         const token = urlToken.split('=')[1];
-        
+
         axios.get(`https://gmail.googleapis.com/gmail/v1/users/jdlandau123@gmail.com/messages?includeSpamTrash=false&maxResults=5`, {
             headers: {
                 Authorization: "Bearer " + token
@@ -24,9 +24,9 @@ export function Gmail() {
                     initMessages.push(i.id);
                     getMessageFromId(i.id, token);
                 })
+                setHasToken(true);
                 setMessageIds(initMessages);
                 setMessageText(messageData);
-                setHasToken(true);
         })
     }
 
@@ -37,16 +37,17 @@ export function Gmail() {
             }}).then((response) => {
                 let subject = response.data.payload.headers.find((i: any) => i.name === 'Subject')['value'];
                 let from = response.data.payload.headers.find((i: any) => i.name === 'From')['value'];
-                messageData.push({Subject: subject, From: from});
+                messageData.push({Subject: subject, From: from, key: id});
             })
     }
 
     useEffect(() => {
-        if (window.location.href.includes('access_token')) {
-            queryGmail();
-            setHasToken(true);
+        if (!hasToken) {
+            if (window.location.href.includes('access_token')) {
+                queryGmail();
+            }
         }
-    }, [])
+    }, [hasToken, setHasToken]);
 
     return (
         <Box bg='grey.200' fontSize='lg' textAlign='center' borderWidth='1px' borderRadius='lg' w='50%' boxShadow='dark-lg' mr='5%'>
@@ -61,9 +62,9 @@ export function Gmail() {
             {/* </Center> : <h3 style={{textDecoration:'underline'}}>Your 5 Most Recent Emails</h3>} */}
             </Center> : null}
             <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                {messageText.map((message: any) => (
+                {messageText.slice(0, 6).map((message: any) => (
                     <Box bg='white' textAlign='center' borderWidth='1px' borderRadius='lg' w='90%'
-                        _hover={{backgroundColor:'lightgrey', cursor:'pointer'}}>
+                        _hover={{backgroundColor:'lightgrey', cursor:'pointer'}} key={message.key}>
                         <a href='https://mail.google.com/mail' target='blank'>
                             <p>Subject: {message.Subject}</p>
                             <p>From: {message.From}</p>

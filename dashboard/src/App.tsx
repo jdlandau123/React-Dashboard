@@ -11,7 +11,7 @@ import { Gmail } from "./Gmail";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl" maxH='100%' overflow-Y='none'>
+    <Box textAlign="center" fontSize="xl" maxH='100%'>
       <Heading size='2xl' style={{marginBottom:'15px', marginTop:'15px'}}>Personal Dashboard</Heading>
       <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around', paddingTop:'10px', minHeight:'300px'}}>
         <Weather />
