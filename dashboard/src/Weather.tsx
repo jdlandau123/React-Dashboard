@@ -17,7 +17,7 @@ export function Weather() {
     }
 
     const getWeather = (lat: number, long: number) => {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=594c6a508b55ce51e636aee82559a7dd`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=APIKEY`)
         .then((response) => {
             setTemp(response.data.main.temp);
             setHumidity(response.data.main.humidity);
