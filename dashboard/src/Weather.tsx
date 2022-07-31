@@ -41,8 +41,7 @@ export function Weather() {
     }, [currentLatitude, currentLongitude]);
 
     return (
-        <Box bg='gray.200' fontSize='lg' textAlign='center' borderWidth='1px' borderRadius='lg' w='30%' ml='5%' 
-            pt='20px' boxShadow='dark-lg'>
+        <Box bg='gray.200' opacity='92%' fontSize='lg' textAlign='center' borderWidth='1px' borderRadius='lg' pt='20px' boxShadow='dark-lg'>
             <Heading size='lg'>Current Location & Weather</Heading>
             <div style={{fontSize:'12pt'}}>
                 {(!errorMessage) ? `Latitude: ${currentLatitude}, Longitude: ${currentLongitude}` : `${errorMessage}`}

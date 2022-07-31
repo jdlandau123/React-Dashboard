@@ -50,7 +50,8 @@ export function Gmail() {
     }, [hasToken, setHasToken]);
 
     return (
-        <Box bg='grey.200' fontSize='lg' textAlign='center' borderWidth='1px' borderRadius='lg' w='50%' boxShadow='dark-lg' mr='5%'>
+        <Box bg='green.100' opacity='92%' fontSize='lg' textAlign='center' borderWidth='1px' borderRadius='lg' boxShadow='dark-lg'
+            minH='300px' maxH='300px'>
             <Heading size='lg'>Gmail</Heading>
             {!hasToken ?
             <Center h='80%'>
@@ -59,9 +60,9 @@ export function Gmail() {
                         Log in to Google Account
                     </a>
                 </Button> 
-            {/* </Center> : <h3 style={{textDecoration:'underline'}}>Your 5 Most Recent Emails</h3>} */}
             </Center> : null}
-            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',
+                maxHeight:'250px', overflowY:'scroll'}}>
                 {messageText.slice(0, 6).map((message: any) => (
                     <Box bg='white' textAlign='center' borderWidth='1px' borderRadius='lg' w='90%'
                         _hover={{backgroundColor:'lightgrey', cursor:'pointer'}} key={message.key}>
