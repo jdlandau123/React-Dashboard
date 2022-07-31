@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react"
 // import { ColorModeSwitcher } from "./ColorModeSwitcher" Add this back in later or make custom version
 import { Weather } from './Weather';
-import { Calendar } from "./Calendar";
 import { Gmail } from "./Gmail";
 
 export const App = () => (
@@ -18,9 +17,7 @@ export const App = () => (
         <Gmail />
       </div>
       <br />
-      <div style={{display:'flex', flexDirection:'row', justifyContent:'end'}}>
-        <Calendar />
-      </div>
+      {/* Add To-do list here */}
     </Box>
   </ChakraProvider>
 )
